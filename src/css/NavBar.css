@@ -1,0 +1,16 @@
+nav {
+    font-size: 20px;
+    background-color:#fafafa;
+    text-decoration: none;
+}
+
+.navEnd{
+    width: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+#navbarNavDropdown{
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+}
