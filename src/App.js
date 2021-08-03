@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer";
+import ItemListCont from "./components/ItemListContainer";
 function App() {
 
   return (
@@ -7,16 +8,16 @@ function App() {
 
       <header className="App-header">
 
-        {NavBar};
+        {NavBar}
 
       </header>
 
       <section>
-
+        <ItemListCont greeting="ACA VAN A ESTAR MIS PRODUCTOS" />
       </section>
       <footer>
 
-        {Footer};
+        {Footer}
 
       </footer>
 
