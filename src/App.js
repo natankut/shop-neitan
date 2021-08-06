@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer";
 import ItemListCont from "./components/ItemListContainer";
+
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
 
       <section>
         <ItemListCont greeting="ACA VAN A ESTAR MIS PRODUCTOS" />
+
       </section>
       <footer>
 
