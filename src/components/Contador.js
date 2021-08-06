@@ -4,12 +4,12 @@ export default function Contador({ cantProd, actualStock }) {
     const [count, setCount] = useState(parseInt(cantProd));
     const [stock, setStock] = useState(parseInt(actualStock));
 
-    function sumar() {
+    function sumarProd() {
         if (count < stock) {
             setCount(count + 1)
         }
     }
-    function restar() {
+    function restarProd() {
         if (count > 1) {
             setCount(count - 1)
         }
@@ -19,10 +19,10 @@ export default function Contador({ cantProd, actualStock }) {
         <>
             <h2>Contador: {count}</h2>
 
-            <button text="SUMAR" onClick={() => setCount(count + 1)}>
+            <button onClick={() => sumarProd()}>
                 +
             </button>
-            <button text="RESTAR" onClick={() => setCount(count - 1)}>
+            <button onClick={() => restarProd()}>
                 -
             </button>
         </>
