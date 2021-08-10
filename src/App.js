@@ -14,7 +14,7 @@ function App() {
       </header>
 
       <section>
-        <ItemListCont greeting="ACA VAN A ESTAR MIS PRODUCTOS" />
+        <ItemListCont />
 
       </section>
       <footer>
