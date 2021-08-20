@@ -1,5 +1,6 @@
 
-export default function Item(props) {
+
+export default function ItemDetail(props) {
 
     return (
         <div className="d-flex justify-content-around">

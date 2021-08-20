@@ -1,37 +1,16 @@
-
+import { productos } from "./productos.js";
 import Item from "./Item";
-import foto1 from "../img/sweater.jpg";
 const { useEffect, useState } = require("react");
 
 export default function ItemList() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+
         new Promise((resolve, reject) => {
 
-            const data = [
-                {
-                    id: "1",
-                    name: "BUZOS",
-                    description: "Interior de felpa",
-                    img: "../img/buzo.jpg",
-                    stock: 5
-                },
-                {
-                    id: "2",
-                    name: "CAMISAS",
-                    description: "Camisas de algodon curado",
-                    img: "../img/camisa.jpg",
-                    stock: 3
-                },
-                {
-                    id: "3",
-                    name: "SWEATERS",
-                    description: "Sweaters de lana natural",
-                    img: "/img/sweater.jpg",
-                    stock: 6
-                }
-            ];
+            const data = productos;
+
             setTimeout(() => resolve(data), 2000);
         })
             .then((dataResolve) => {
@@ -41,6 +20,7 @@ export default function ItemList() {
             .catch((error) => {
                 console.log("err", error);
             });
+
     }, []);
 
     return (
