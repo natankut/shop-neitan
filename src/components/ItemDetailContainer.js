@@ -8,8 +8,8 @@ import "../css/ItemDetail.css";
 export default function ItemDetailContainer() {
 
     const [products, setProducts] = useState([]);
-
     const { id } = useParams();
+
     useEffect(() => {
         new Promise((resolve, reject) => {
             setTimeout(() => resolve(productsJson.filter((item) => item.id === id))
