@@ -1,42 +1,30 @@
-import ItemDetail from './ItemDetail';
-import { useState, useEffect } from 'react';
-import { productos } from './productos';
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { productsJson } from "./productsJson";
+import ItemDetail from "./ItemDetail";
+import Contador from "./Contador";
+import "../css/ItemDetail.css";
 
 export default function ItemDetailContainer() {
 
-    const [prod, setProd] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const { id } = useParams();
-
-    const getItem = () => {
-        new Promise((resolve, reject) => {
-
-            setTimeout(() => {
-                const x = productos.filter((item) => item.id == id)
-                resolve(x)
-            }, 2000)
-        })
-            .then(dataResolve => {
-                setProd(dataResolve);
-            })
-            .catch(err => console.log(err));
-    }
-
     useEffect(() => {
-        getItem();
-    }, [])
+        new Promise((resolve, reject) => {
+            setTimeout(() => resolve(productsJson.filter((item) => item.id === id))
+                , 2000
+            );
+        })
+            .then((data) => setProducts(data[0]));
+
+    }, []);
 
 
     return (
-        <>
-            {prod.map((item) => {
-                return (
-                    <ItemDetail id={item.id} name={item.name} image={item.img} price={item.price} stock={item.stock} description={item.description} />
-                )
-            })
-
-            }
-        </>
+        <div className="container shadow BackgroundItemDetCont">
+            <ItemDetail {...products} />
+            <Contador cantProd='1' actualStock='10' />
+        </div>
     )
-}
+};

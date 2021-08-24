@@ -1,32 +1,11 @@
-import { productos } from "./productos.js";
-import Item from "./Item";
-const { useEffect, useState } = require("react");
+import Item from "./Item"
 
-export default function ItemList() {
-    const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-
-        new Promise((resolve, reject) => {
-
-            const data = productos;
-
-            setTimeout(() => resolve(data), 2000);
-        })
-            .then((dataResolve) => {
-                console.log("data Resolve", dataResolve);
-                setProducts(dataResolve);
-            })
-            .catch((error) => {
-                console.log("err", error);
-            });
-
-    }, []);
-
+export default function ItemList({ products }) {
     return (
-        <div className="d-flex justify-content-around">
-            {products.map((cadaProducto) => (
-                <Item {...cadaProducto} />
+        <div className="d-flex ">
+            {products.map((item) => (
+                <Item {...item} />
             ))}
         </div>
     );

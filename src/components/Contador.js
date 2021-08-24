@@ -19,12 +19,14 @@ export default function Contador({ cantProd, actualStock }) {
         <>
             <h2>Contador: {count}</h2>
 
-            <button onClick={() => sumarProd()}>
-                +
-            </button>
-            <button onClick={() => restarProd()}>
-                -
-            </button>
+            <div>
+                <button className="btn btn-success m-1" onClick={() => sumarProd()}>
+                    +
+                </button>
+                <button className="btn btn-success" onClick={() => restarProd()}>
+                    -
+                </button>
+            </div>
         </>
     );
 }
