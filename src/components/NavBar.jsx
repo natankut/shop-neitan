@@ -5,7 +5,7 @@ export default function NavBar() {
 
     return (
 
-        <nav className="shadow">
+        <nav className="shadow mb-4">
             <ul>
                 <li>
                     <Link className="fw-bold" to="/">

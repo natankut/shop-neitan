@@ -4,7 +4,7 @@ export default function Item(props) {
 
     return (
 
-        <div className="card rounded-3 shadow m-1 p-1">
+        <div className="card rounded-3 shadow p-1">
             <h4 className="card-header">{props.name}</h4>
             <img src={props.img} alt="ropa" />
 

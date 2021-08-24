@@ -19,7 +19,7 @@ function ItemDetail(props) {
                 </div>
 
             </div>
-            <Link className="text-decoration-none" to={`/`} >Volver a categorias</Link>
+            <Link className="text-decoration-none" to={`/category/${props.category}`} >Volver a categorias</Link>
         </div>
     );
 }
