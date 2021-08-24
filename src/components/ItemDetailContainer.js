@@ -16,8 +16,12 @@ export default function ItemDetailContainer() {
                 , 2000
             );
         })
-            .then((data) => setProducts(data[0]));
-
+            .then((data) => {
+                setProducts(data[0]);
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
     }, []);
 
 

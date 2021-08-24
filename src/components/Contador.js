@@ -17,7 +17,7 @@ export default function Contador({ cantProd, actualStock }) {
 
     return (
         <>
-            <h2>Contador: {count}</h2>
+            <h2>Cantidad: {count}</h2>
 
             <div>
                 <button className="btn btn-success m-1" onClick={() => sumarProd()}>

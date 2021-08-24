@@ -13,12 +13,13 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/categorias">
+        <Route exact path="/category/:category">
           <ItemListContainer />
         </Route>
         <Route exact path="/item/:id">
           <ItemDetailContainer />
         </Route>
+
       </Switch>
     </BrowserRouter>
   );
