@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { productsJson } from "./productsJson";
 import ItemList from "./ItemList";
-import Contador from "./Contador";
+import Contador from "./ItemCount.js";
 import { Link, useParams } from 'react-router-dom';
 import '../css/Loading.css';
 
@@ -46,9 +46,7 @@ export default function ItemListContainer() {
             <div>
                 <ItemList products={products} />
             </div>
-            <div className="d-flex">
-                <Contador cantProd='1' actualStock='10' />
-            </div>
+
             <Link to="/"><button className="btn btn-warning m-1">Home</button></Link>
         </div>
     )

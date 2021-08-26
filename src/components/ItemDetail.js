@@ -1,8 +1,17 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/ItemDetail.css";
+import Contador from "./ItemCount";
 
 function ItemDetail(props) {
+    const [comprar, setComprar] = useState();
+    const [terminar, setTerminar] = useState(false);
 
+
+    const onAdd = (cantidad) => {
+        setComprar(cantidad);
+        setTerminar(!terminar)
+    };
 
     return (
         <div>
@@ -14,7 +23,13 @@ function ItemDetail(props) {
                     <h2>{props.name}</h2>
                     <h4>$ {props.price}</h4>
                     <h3>stock {props.stock}</h3>
-                    <button className="btn btn-danger">COMPRAR</button>
+                    {terminar ? (
+                        <Link to="/cart"><button className="btn btn-danger">Finalizar compra</button></Link>
+                    ) : (
+                        <Contador cantProd="1"
+                            actualStock='10'
+                            onClick={(cant) => onAdd(cant)} />
+                    )}
 
                 </div>
 
