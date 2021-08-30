@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 export default function Contador(props) {
-    const [count, setCount] = useState(parseInt(props.cantProd));
-    const [stock, setStock] = useState(parseInt(props.actualStock));
+    const [count, setCount] = useState(parseInt(props.initial));
+    const [stock, setStock] = useState(parseInt(props.stock));
 
     function sumarProd() {
         if (count < stock) {
@@ -26,7 +26,7 @@ export default function Contador(props) {
                 <button className="btn btn-success" onClick={() => restarProd()}>
                     -
                 </button>
-                <button className="btn btn-danger m-1" onClick={() => props.onClick(count)} >AGREGAR {" "}</button>
+                <button className="btn btn-danger m-1" onClick={() => props.onClick(count)}>AGREGAR</button>
             </div>
         </>
     );

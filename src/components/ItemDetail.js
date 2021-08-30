@@ -26,8 +26,10 @@ function ItemDetail(props) {
                     {terminar ? (
                         <Link to="/cart"><button className="btn btn-danger">Finalizar compra</button></Link>
                     ) : (
-                        <Contador cantProd="1"
-                            actualStock='10'
+
+                        <Contador
+                            initial={props.initial}
+                            stock={props.stock}
                             onClick={(cant) => onAdd(cant)} />
                     )}
 

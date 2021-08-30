@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { productsJson } from "./productsJson";
 import ItemList from "./ItemList";
-import Contador from "./ItemCount.js";
 import { Link, useParams } from 'react-router-dom';
 import '../css/Loading.css';
 
