@@ -28,15 +28,18 @@ function ItemDetail(props) {
                     ) : (
 
                         <Contador
+
                             initial={props.initial}
                             stock={props.stock}
-                            onClick={(cant) => onAdd(cant)} />
+                            onClick={(cant) => onAdd(cant)}
+                            onAdd={setComprar}
+                        />
                     )}
 
                 </div>
 
             </div>
-            <Link className="text-decoration-none" to={`/category/${props.category}`} >Volver a categorias</Link>
+            <Link className="text-decoration-none" to={`/category/${props.category}`}> Volver a categorias </Link>
         </div>
     );
 }

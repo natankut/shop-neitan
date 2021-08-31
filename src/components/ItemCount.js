@@ -15,9 +15,11 @@ export default function Contador(props) {
         }
     };
 
+    console.log(props.initial)
+    console.log(count)
     return (
         <>
-            <h2>Cantidad: {count}</h2>
+            <h2>Cantidad: {count && count}</h2>
 
             <div>
                 <button className="btn btn-success m-1" onClick={() => sumarProd()}>
