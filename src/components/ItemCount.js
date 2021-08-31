@@ -15,8 +15,7 @@ export default function Contador(props) {
         }
     };
 
-    console.log(props.initial)
-    console.log(count)
+
     return (
         <>
             <h2>Cantidad: {count && count}</h2>
