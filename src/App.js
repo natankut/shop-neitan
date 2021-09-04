@@ -17,13 +17,13 @@ function App() {
             <Home />
           </Route>
           <Route exact path="/category/:category">
-            <ItemListContainer />
+            <ItemListContainer component={ItemListContainer} />
           </Route>
           <Route exact path="/item/:id">
-            <ItemDetailContainer />
+            <ItemDetailContainer component={ItemDetailContainer} />
           </Route>
           <Route>
-            <Cart />
+            <Cart component={Cart} />
           </Route>
         </Switch>
       </BrowserRouter>

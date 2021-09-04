@@ -10,8 +10,6 @@ export default function CartContext2(props) {
     const [cart, setCart] = useState([]);
 
 
-
-
     return (
         <>
             <CartContext.Provider value={[cart, setCart]}>
