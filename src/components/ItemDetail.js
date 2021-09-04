@@ -2,15 +2,26 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/ItemDetail.css";
 import Contador from "./ItemCount";
+import { CartContext } from '../context/CartContext';
+import { useContext } from 'react';
+
 
 function ItemDetail(props) {
+    const { addItem } = useContext(CartContext);
     const [comprar, setComprar] = useState();
     const [terminar, setTerminar] = useState(false);
 
+    const [cart, setCart] = useContext(CartContext);
+    const addToCart = () => {
+        const productos = { name: props.name, price: props.price }
+        setCart(estado => [...estado, productos]);
+        ;
+    }
 
     const onAdd = (cantidad) => {
         setComprar(cantidad);
         setTerminar(!terminar)
+
     };
 
     return (
@@ -24,7 +35,7 @@ function ItemDetail(props) {
                     <h4>$ {props.price}</h4>
                     <h3>stock {props.stock}</h3>
                     {terminar ? (
-                        <Link to="/cart"><button className="btn btn-danger">Finalizar compra</button></Link>
+                        <Link to="/cart"><button className="btn btn-danger" onClick={addToCart}>Finalizar compra</button></Link>
                     ) : (
 
                         <Contador
