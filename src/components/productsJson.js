@@ -2,7 +2,6 @@ export const productsJson =
 
     [
 
-
         {
             id: "1",
             category: "buzos",

@@ -4,10 +4,12 @@ import { CartContext } from "../context/CartContext";
 
 export default function Item(props) {
     const [cart, setCart] = useContext(CartContext);
+
     const addToCart = () => {
         const productos = { name: props.name, price: props.price }
         setCart(estadoActual => [...estadoActual, productos]);
     }
+
     return (
 
         <div className="card rounded-3 shadow p-1 m-1 " style={{ width: "15rem" }}>

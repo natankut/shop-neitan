@@ -7,11 +7,13 @@ import { useContext } from 'react';
 
 
 function ItemDetail(props) {
+
     const { addItem } = useContext(CartContext);
     const [comprar, setComprar] = useState();
     const [terminar, setTerminar] = useState(false);
 
     const [cart, setCart] = useContext(CartContext);
+
     const addToCart = () => {
         const productos = { name: props.name, price: props.price }
         setCart(estado => [...estado, productos]);
@@ -39,7 +41,6 @@ function ItemDetail(props) {
                     ) : (
 
                         <Contador
-
                             initial={props.initial}
                             stock={props.stock}
                             onClick={(cant) => onAdd(cant)}
