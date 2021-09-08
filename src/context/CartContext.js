@@ -6,13 +6,17 @@ export const CartContext = React.createContext();
 
 
 
-export default function CartContext2(props) {
+export default function CartProvider(props) {
 
 
     const [cart, setCart] = useState([]);
     const [cartLength, setCartLength] = useState(0);
     const [total, setTotal] = useState(0);
 
+    const addToCart = (item, cantidad) => {
+        const freshCart = [...cart, { id: item.id, name: item.name, img: item.img, quantity: cantidad }];
+        setCart(freshCart)
+    }
 
     const addItem = (item) => {
         setCart([...cart, item])
@@ -53,7 +57,7 @@ export default function CartContext2(props) {
 
     return (
         <>
-            <CartContext.Provider value={[cart, setCart, isInCart, editCart, vaciarCarrito, deleteItem, cartLength, total, addItem]}>
+            <CartContext.Provider value={[cart, setCart, isInCart, editCart, vaciarCarrito, deleteItem, cartLength, total, addItem, addToCart]}>
                 {props.children}
             </CartContext.Provider>
         </>

@@ -15,7 +15,7 @@ function ItemDetail(props) {
     const [cart, setCart] = useContext(CartContext);
 
     const addToCart = () => {
-        const productos = { name: props.name, price: props.price }
+        const productos = { name: props.name, img: props.img, price: props.price, description: props.description }
         setCart(estado => [...estado, productos]);
         ;
     }
@@ -41,10 +41,12 @@ function ItemDetail(props) {
                     ) : (
 
                         <Contador
+
                             initial={props.initial}
                             stock={props.stock}
                             onClick={(cant) => onAdd(cant)}
                             onAdd={setComprar}
+
                         />
                     )}
 
