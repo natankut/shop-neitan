@@ -1,30 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/ItemDetail.css";
 import Contador from "./ItemCount";
 import { CartContext } from '../context/CartContext';
-import { useContext } from 'react';
+
 
 
 function ItemDetail(props) {
 
-    const { addItem } = useContext(CartContext);
-    const [comprar, setComprar] = useState();
+    const { cart, addItem } = useContext(CartContext);
     const [terminar, setTerminar] = useState(false);
+    const [newInitial, setNewInitial] = useState(props.initial);
 
-    const [cart, setCart] = useContext(CartContext);
+    useEffect(() => {
+        const checkCart = cart.findIndex((obj) => obj.id === props.id);
+        if (checkCart >= 0) {
+            const actualInitial = cart[checkCart].quantity
+            setNewInitial(actualInitial);
 
-    const addToCart = () => {
-        const productos = { name: props.name, img: props.img, price: props.price, description: props.description }
-        setCart(estado => [...estado, productos]);
-        ;
+            console.log(`Cart al cargar con initial: ${actualInitial} es`, cart);
+        }
+    }, [cart, props.id, props.initial, props.stock]);
+
+
+    const agregarAlCarrito = (cantProducto) => {
+        setTerminar(!terminar)
+        addItem(props, cantProducto)
     }
 
-    const onAdd = (cantidad) => {
-        setComprar(cantidad);
-        setTerminar(!terminar)
+    console.log(cart)
 
-    };
 
     return (
         <div>
@@ -36,16 +41,16 @@ function ItemDetail(props) {
                     <h2>{props.name}</h2>
                     <h4>$ {props.price}</h4>
                     <h3>stock {props.stock}</h3>
+
                     {terminar ? (
-                        <Link to="/cart"><button className="btn btn-danger" onClick={addToCart}>Finalizar compra</button></Link>
+                        <Link to="/cart"><button className="btn btn-danger">Ir al carrito</button></Link>
                     ) : (
 
                         <Contador
 
                             initial={props.initial}
                             stock={props.stock}
-                            onClick={(cant) => onAdd(cant)}
-                            onAdd={setComprar}
+                            onClick={(cant) => agregarAlCarrito(cant)}
 
                         />
                     )}
