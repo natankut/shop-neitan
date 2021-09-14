@@ -9,6 +9,7 @@ import Cart from './components/Cart';
 function App() {
 
   return (
+
     <CartProvider>
       <BrowserRouter>
         <NavBar />
@@ -28,6 +29,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </CartProvider >
+
   );
 }
 

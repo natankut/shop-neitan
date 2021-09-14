@@ -1,31 +1,37 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { productsJson } from "./productsJson";
+//import { productsJson } from "./productsJson";
 import ItemDetail from "./ItemDetail";
-
+import { collection, getDocs } from 'firebase/firestore';
+import { getData } from '../firebase';
 import "../css/ItemDetail.css";
 
 export default function ItemDetailContainer() {
 
-    const [products, setProducts] = useState([]);
+    const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
     const { id } = useParams();
 
+
     useEffect(() => {
-        new Promise((resolve, reject) => {
-            setLoading(true);
-            setTimeout(() => resolve(productsJson.filter((item) => item.id === id))
-                , 2000
-            );
-        })
-            .then((data) => {
-                setProducts(data[0]);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.log("error", error);
-            })
-    }, []);
+        setLoading(true);
+        // función que busca todos los productos
+        const getProduct = async () => {
+            const prodCollection = collection(getData(), 'productsJson');
+            const prodSnapshot = await getDocs(prodCollection);
+            const prodList = prodSnapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            }));
+
+            // filtro el listado y busco el que quiero mostrar
+            const thisProd = prodList.filter((item) => item.id === id)
+            setLoading(false);
+            setProduct(thisProd);
+            console.log(thisProd);
+        };
+        getProduct();
+    }, [id]);
+
 
 
     return loading ? (
@@ -37,7 +43,13 @@ export default function ItemDetailContainer() {
     ) : (
 
         <div className="container shadow BackgroundItemDetCont">
-            <ItemDetail {...products} />
+
+            {product.map((item) => {
+                return (
+                    <ItemDetail id={item.id} name={item.name} img={item.image} price={item.price} description={item.description} stock={item.stock} initial={item.initial} key={item.id} />
+                )
+            })
+            }
 
         </div>
     )

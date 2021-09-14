@@ -10,7 +10,7 @@ export const CartContext = React.createContext();
 //creo mi componente que va a contener mi estado global, el cual sera utilizado en App.js
 export default function CartProvider({ children }) {
 
-    const usuario = useState(null);
+
     const [cart, setCart] = useState([]); //este useState se va a transformar en mi estado global
     const [cartLength, setCartLength] = useState(0);
     const [total, setTotal] = useState(0);
@@ -78,7 +78,7 @@ export default function CartProvider({ children }) {
     return (
         <>
             <CartContext.Provider value={{ cart, setCart, isInCart, vaciarCarrito, removeItem, cartLength, setCartLength, total, addItem, setTotal }}>
-                {usuario}
+
                 {children}
             </CartContext.Provider>
         </>

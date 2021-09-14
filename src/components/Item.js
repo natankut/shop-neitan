@@ -8,7 +8,7 @@ export default function Item(props) {
 
         <div className="card rounded-3 shadow p-1 m-1 " style={{ width: "15rem" }}>
             <h4 className="card-header">{props.name}</h4>
-            <img src={props.img} alt="ropa" />
+            <img src={props.image} alt="ropa" />
 
             <div className="card-body d-flex flex-column fw-bold">
 

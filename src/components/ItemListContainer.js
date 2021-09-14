@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { productsJson } from "./productsJson";
+//import { productsJson } from "./productsJson";
 import ItemList from "./ItemList";
 import { Link, useParams } from 'react-router-dom';
 import '../css/Loading.css';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { getData } from '../firebase';
+import Loading from "./Loading";
 
 export default function ItemListContainer() {
 
@@ -10,34 +13,52 @@ export default function ItemListContainer() {
     const [loading, setLoading] = useState(false);
     const { category } = useParams();
 
+
     useEffect(() => {
+        setLoading(true);
 
-        new Promise((resolve, reject) => {
+        // función que busca todos los productos
+        const getProds = async () => {
+            const prodCollection = collection(getData(), 'productsJson');
+            const prodSnapshot = await getDocs(prodCollection);
+            const prodList = prodSnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setLoading(false);
+            setProducts(prodList);
+        };
 
-            setLoading(true);
-
-            if (category !== undefined) {
-                setTimeout(() => resolve(productsJson.filter((item) => item.category === category)), 2000);
-            } else {
-                setTimeout(() => resolve(productsJson), 2000);
-            }
-        })
-            .then((data) => {
-                setProducts(data)
+        // función que busca productos filtrados
+        const getCategory = async () => {
+            const prodCollection = collection(getData(), 'productsJson');
+            const categoryQuery = query(prodCollection, where('category', '==', `${category}`));
+            try {
+                const prodSnapshot = await getDocs(categoryQuery);
+                const categoryList = prodSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
                 setLoading(false);
-            })
-            .catch((error) => {
-                console.log("error", error);
-            });
+                setProducts(categoryList);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        // elijo qué función utilizar
+        if (category !== undefined) {
+            getCategory();
+        } else {
+            getProds();
+        }
+
     }, [category]);
 
 
     return loading ? (
 
-        <div className="loadingio-spinner-bean-eater-jn47c5ktji loading">
-            <div className="ldio-o84b2rt9xe">
-                <div><div></div><div></div><div></div></div><div><div></div><div></div><div></div></div>
-            </div></div>
+        <Loading />
 
     ) : (
 
