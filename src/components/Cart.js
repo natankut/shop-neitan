@@ -7,10 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Cart() {
 
-    const { cart, removeItem, cartLength, vaciarCarrito, total } = useContext(CartContext);
-
-
-
+    const { cart, removeItem, cartLength, vaciarCarrito, total, finalizarCompra } = useContext(CartContext);
 
 
     return (
@@ -29,11 +26,11 @@ export default function Cart() {
                     <button className="btn btn-danger shadow" onClick={() => { vaciarCarrito() }}>Vaciar Carrito</button>
 
                     <Link to="/">
-                        <button className="btn btn-success shadow" style={{ heigth: "100%" }}>Finalizar Compra</button>
+                        <button className="btn btn-success shadow" onClick={() => finalizarCompra()} style={{ heigth: "100%" }}>Finalizar Compra</button>
                     </Link>
 
                 </div>
-            </> : <h3>No hay productos en tu carrito</h3>
+            </> : <h3>No hay productos en tu carrito... por ahora!</h3>
 
     );
 }

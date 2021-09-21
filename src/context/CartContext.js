@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
-
+import { collection, doc, setDoc, Timestamp } from "firebase/firestore";
+import { getData } from "../firebase";
 //se crea el Contexto para ser usado en cualquier componente
 //se genera un export const porque lo tengo que importar cada vez que lo quiera usar
 
@@ -15,7 +15,23 @@ export default function CartProvider({ children }) {
     const [cartLength, setCartLength] = useState(0);
     const [total, setTotal] = useState(0);
 
+    const userInfo = {
+        name: "Natan",
+        mail: "Natan@mail.com",
+        phone: "11-5823-0000"
+    }
 
+    const finalizarCompra = async () => {
+        console.log("Fin de compra");
+        const orderCollection = doc(collection(getData(), 'orders'));
+        const order = {
+            buyer: userInfo,
+            items: cart,
+            date: Timestamp.fromDate(new Date()),
+            total: total
+        };
+        await setDoc(orderCollection, order)
+    }
     //funciones que modificaran el cart
 
     const addItem = (item, cantidad) => {
@@ -77,8 +93,7 @@ export default function CartProvider({ children }) {
 
     return (
         <>
-            <CartContext.Provider value={{ cart, setCart, isInCart, vaciarCarrito, removeItem, cartLength, setCartLength, total, addItem, setTotal }}>
-
+            <CartContext.Provider value={{ cart, setCart, isInCart, vaciarCarrito, removeItem, cartLength, setCartLength, total, addItem, setTotal, finalizarCompra }}>
                 {children}
             </CartContext.Provider>
         </>
