@@ -1,15 +1,16 @@
 nav {
-    height:60px;
-    background-color: #fafafa;   
-}
-ul {
     display: flex;
-    justify-content: space-around;
-    list-style: none;
-    align-items: center;
-    height: 50px;
-    margin-bottom:10px;
-    padding: 0;
+    height:80px;
+    background-color: #fafafa;  
+    max-width: 100%;
+}
+.navbar-brand{
+    font-size: 40px;
+    font-weight: 700;
+}
+
+ul {   
+    list-style: none;    
 }
 ul a{
     text-decoration: none;
@@ -17,8 +18,54 @@ ul a{
     font-size: 20px;
 }
 #widget{
+    margin-right: 25px ;
+    display: flex;
+    justify-content: space-around;
     padding: 0;
-    width: 75px;
+    width: 85px;
+    
+}
+.notif{
+    position: absolute;
+    right:29px;
+    top:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    color: #fff;
+    
+}
+.customList {
+    display: flex;
+    justify-content: space-between;
+}
+#navbarNavDropdown{
+    z-index: 1;
+    padding-left: 5px;
+    width: 100%;
+    background-color: #fafafa;
+
 }
 
 
+
+@media (max-width: 991px) {
+
+.notif{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        color: #fff;
+        height: 20px;
+        bottom: 1px;
+        left: 80px;       
+}
+#widget{
+   position: relative; 
+   top: -50px;
+}
+
+}

@@ -5,7 +5,7 @@ import Home from "./pages/home";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import CartProvider from './context/CartContext';
 import Cart from './components/Cart';
-
+import CartForm from './components/CartForm';
 function App() {
 
   return (
@@ -23,8 +23,11 @@ function App() {
           <Route exact path="/item/:id">
             <ItemDetailContainer component={ItemDetailContainer} />
           </Route>
-          <Route>
+          <Route exact path="/cart">
             <Cart component={Cart} />
+          </Route>
+          <Route exact path="/cartForm">
+            <CartForm component={CartForm} />
           </Route>
         </Switch>
       </BrowserRouter>

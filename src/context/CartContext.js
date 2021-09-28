@@ -15,15 +15,30 @@ export default function CartProvider({ children }) {
     const [cartLength, setCartLength] = useState(0);
     const [total, setTotal] = useState(0);
 
-    const userInfo = {
-        name: "Natan",
-        mail: "Natan@mail.com",
-        phone: "11-5823-0000"
+    const [userInfo, setUserInfo] = useState({
+
+        name: "",
+        email: "",
+        phone: "",
+
+    });
+
+    const tomarDatos = (e) => {
+        setUserInfo({
+            ...userInfo,
+            [e.target.name]: e.target.value
+        })
+    };
+
+    const submitBoton = (e) => {
+        e.preventDefault();
     }
+
 
     const finalizarCompra = async () => {
         console.log("Fin de compra");
         const orderCollection = doc(collection(getData(), 'orders'));
+
         const order = {
             buyer: userInfo,
             items: cart,
@@ -32,10 +47,10 @@ export default function CartProvider({ children }) {
         };
         await setDoc(orderCollection, order)
     }
-    //funciones que modificaran el cart
+    //funciones que agregan un item al CART
 
     const addItem = (item, cantidad) => {
-        // inicializo newCart y lo utilizo en esta función para no mutar myCart
+
         let newCart = cart;
 
         // saco la cuenta del precio total que se quiere agregar 
@@ -91,9 +106,18 @@ export default function CartProvider({ children }) {
         setTotal(cartPrice)
     }, [cart]);
 
+    useEffect(() => {
+        let cartPrice = 0;
+
+        for (let i of cart) {
+            cartPrice += i.price
+        }
+        return setTotal(cartPrice)
+    }, [cart]);
+
     return (
         <>
-            <CartContext.Provider value={{ cart, setCart, isInCart, vaciarCarrito, removeItem, cartLength, setCartLength, total, addItem, setTotal, finalizarCompra }}>
+            <CartContext.Provider value={{ cart, setCart, isInCart, vaciarCarrito, removeItem, cartLength, setCartLength, total, addItem, setTotal, finalizarCompra, tomarDatos, submitBoton }}>
                 {children}
             </CartContext.Provider>
         </>
