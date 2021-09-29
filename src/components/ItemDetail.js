@@ -58,7 +58,7 @@ function ItemDetail(props) {
                 </div>
 
             </div>
-            <Link className="text-decoration-none" to={`/category/${props.category}`}> Volver a categorias </Link>
+            <Link className="btn btn-warning text-decoration-none m-1" to={`/category/${props.category}`}> Volver a categorias </Link>
         </div>
     );
 }

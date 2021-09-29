@@ -23,15 +23,20 @@ export default function Cart() {
 
                     <h3 className="border p-2 m-0">Total de tu compra: $ {total}</h3>
 
-                    <button className="btn btn-danger" onClick={() => { vaciarCarrito() }}>Vaciar Carrito</button>
+                    <button style={{ width: "150px" }} className="btn btn-danger" onClick={() => { vaciarCarrito() }}>Vaciar Carrito</button>
 
                     <Link to="/cartForm">
-                        <button className="btn btn-success">Finalizar Compra</button>
+                        <button style={{ width: "150px", height: "100%" }} className="btn btn-success">Finalizar Compra</button>
                     </Link>
 
                 </div>
             </>
-            : <h3>No hay productos en tu carrito... por ahora!</h3>
-
+            :
+            <div className="container">
+                <h3>No hay productos en tu carrito... por ahora!</h3>
+                <Link to="/">
+                    <button style={{ width: "150px", height: "100%" }} className="btn btn-success"> Ir a comprar</button>
+                </Link>
+            </div>
     );
 }

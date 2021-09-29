@@ -1,11 +1,11 @@
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import CartConfirm from "../components/CartConfirm";
 
 function CartForm() {
 
-    const { tomarDatos, finalizarCompra, vaciarCarrito, submitBotton } = useContext(CartContext)
+    const { total, cart, tomarDatos, finalizarCompra, vaciarCarrito, submitBotton } = useContext(CartContext)
 
     return (
 
@@ -32,7 +32,7 @@ function CartForm() {
 
                 <div className="d-flex justify-content-around">
 
-                    <imput type="button" className="btn btn-success fw-bold" onClick={() => finalizarCompra()} style={{ color: "black", width: "10rem", fontSize: "1.2rem", textAlign: "center" }} type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Confirmar compra </imput>
+                    <imput type="button" className="btn btn-success" onClick={() => finalizarCompra()} style={{ color: "white", width: "10rem", fontSize: "1.2rem", textAlign: "center" }} type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Confirmar compra </imput>
 
                     <div className="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div className="modal-dialog">
@@ -41,13 +41,17 @@ function CartForm() {
                                     <h5 className="modal-title" id="staticBackdropLabel">LISTO! Que lo disfrutes!</h5>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
+                                <div class="modal-body" style={{ fontSize: "1.1rem" }}>
+                                    {cart.map(props => <CartConfirm key={props.id} props={props} />)}
+                                    <h3 className=" p-2 m-0">Total: $ {total}</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <Link to="/"><button className="btn btn-warning fw-bold" style={{ color: "black", width: "10rem", fontSize: "1.2rem", textAlign: "center" }} type="submit">Seguir comprando </button></Link>
+                    <Link to="/"><button className="btn btn-warning" style={{ color: "white", width: "10rem", fontSize: "1.2rem", textAlign: "center" }} type="submit">Seguir comprando </button></Link>
 
-                    <Link to="/"><button className="btn btn-danger fw-bold" style={{ color: "black", width: "10rem", fontSize: "1.2rem", textAlign: "center" }} onClick={vaciarCarrito} type="submit">Cancelar compra</button></Link>
+                    <Link to="/"><button className="btn btn-danger" style={{ color: "white", width: "10rem", fontSize: "1.2rem", textAlign: "center" }} onClick={vaciarCarrito} type="submit">Cancelar compra</button></Link>
                 </div>
             </form>
         </div>

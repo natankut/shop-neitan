@@ -42,7 +42,7 @@ export default function ItemDetailContainer() {
             </div></div>
     ) : (
 
-        <div className="container shadow BackgroundItemDetCont">
+        <div className="container shadow BackgroundItemDetCont" style={{ width: "700px" }}>
 
             {product.map((item) => {
                 return (

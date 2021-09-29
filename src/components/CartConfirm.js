@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
-const ItemCart = ({ props }) => {
+const CartConfirm = ({ props }) => {
 
     const { removeItem } = useContext(CartContext);
 
@@ -14,13 +14,10 @@ const ItemCart = ({ props }) => {
                 <h3>{props.quantity}</h3>
                 <h3>$ <span>{props.price}</span></h3>
 
-                <div><button className="btn btn-warning" onClick={() => removeItem(props.id)}>Eliminar</button></div>
-
             </div>
         </div>
 
     )
 }
 
-export default ItemCart;
-
+export default CartConfirm;
