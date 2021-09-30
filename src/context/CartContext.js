@@ -69,10 +69,10 @@ export default function CartProvider({ children }) {
             // lo agrego de nuevo en la misma posición que estaba para que al usuario no se le modifique la posición y lo vea extraño
             newCart.splice(idx, 0, newProd);
 
-            // actualizo MyCart
+
             setCart(newCart)
         } else {
-            // si el Producto no está en el carrito, actualizo MyCart directamente
+
             newCart = [...newCart, newProd];
             setCart(newCart)
         }
@@ -117,7 +117,7 @@ export default function CartProvider({ children }) {
 
     return (
         <>
-            <CartContext.Provider value={{ cart, setCart, isInCart, vaciarCarrito, removeItem, cartLength, setCartLength, total, addItem, setTotal, finalizarCompra, tomarDatos, submitBoton }}>
+            <CartContext.Provider value={{ cart, setCart, isInCart, vaciarCarrito, removeItem, cartLength, setCartLength, total, addItem, setTotal, finalizarCompra, tomarDatos, submitBoton, userInfo }}>
                 {children}
             </CartContext.Provider>
         </>

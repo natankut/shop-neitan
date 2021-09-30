@@ -2,6 +2,7 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartConfirm from "../components/CartConfirm";
+import UserConfirm from "./UserConfirm";
 
 function CartForm() {
 
@@ -41,9 +42,10 @@ function CartForm() {
                                     <h5 className="modal-title" id="staticBackdropLabel">LISTO! Que lo disfrutes!</h5>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body" style={{ fontSize: "1.1rem" }}>
+                                <div className="modal-body" style={{ fontSize: "1.1rem" }}>
                                     {cart.map(props => <CartConfirm key={props.id} props={props} />)}
                                     <h3 className=" p-2 m-0">Total: $ {total}</h3>
+                                    <UserConfirm />
                                 </div>
                             </div>
                         </div>

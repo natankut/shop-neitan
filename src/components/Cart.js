@@ -13,7 +13,7 @@ export default function Cart() {
     return (
         cartLength > 0 ?
 
-            <>
+            <div className="container">
                 <h3 className="mb-3">Productos en tu carrito:</h3>
                 <div className="container">
                     {cart.map(props => <ItemCart key={props.id} props={props} />)}
@@ -30,12 +30,12 @@ export default function Cart() {
                     </Link>
 
                 </div>
-            </>
+            </div>
             :
             <div className="container">
                 <h3>No hay productos en tu carrito... por ahora!</h3>
                 <Link to="/">
-                    <button style={{ width: "150px", height: "100%" }} className="btn btn-success"> Ir a comprar</button>
+                    <button style={{ width: "150px", height: "100%" }} className="btn btn-success">Ir a comprar</button>
                 </Link>
             </div>
     );
